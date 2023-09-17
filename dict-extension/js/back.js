@@ -38,11 +38,10 @@ const global = (function () {
 
 
 chrome.contextMenus.onClicked.addListener((item, tab) => {
-    let tabId = item.menuItemId
-    let text = item.selectionText
+    let text = item.selectionText.trim()
     let url = null
     if (text.split(" ").length > 1 || isChinese(text)) {
-        url = `https://cn.bing.com/search?q=翻译：${text}`;
+        url = `https://cn.bing.com/search?q=英文：${text}`;
     } else {
         url = `https://cn.bing.com/dict/search?q=${text}`;
     }
