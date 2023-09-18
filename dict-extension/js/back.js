@@ -13,14 +13,12 @@ function backjs() {
     })
 }
 // bing
-chrome.runtime.onInstalled.addListener(async () => {
-    chrome.contextMenus.create({
-        type: 'normal',
-        title: 'JV Bing Dict',
-        id: 'bing',
-        // all, audio, browser_action, editable, frame, image, launcher, link, page, page_action, selection, video.
-        contexts: ['selection'],
-    });
+chrome.contextMenus.create({
+    type: 'normal',
+    title: 'JV Bing Dict',
+    id: 'bing',
+    // all, audio, browser_action, editable, frame, image, launcher, link, page, page_action, selection, video.
+    contexts: ['selection'],
 });
 // youdao
 // chrome.runtime.onInstalled.addListener(async () => {
@@ -41,7 +39,8 @@ chrome.contextMenus.onClicked.addListener((item, tab) => {
     let text = item.selectionText.trim()
     let url = null
     if (text.split(" ").length > 1 || isChinese(text)) {
-        url = `https://cn.bing.com/search?q=英文：${text}`;
+        url = `https://fanyi.baidu.com/#zh/en/${text}`
+        // url = `https://cn.bing.com/search?q=翻译：${text}`;
     } else {
         url = `https://cn.bing.com/dict/search?q=${text}`;
     }
@@ -55,6 +54,6 @@ function isChinese(text) {
         return false;
     } else {
         return true;
-    } 
+    }
 
 }
