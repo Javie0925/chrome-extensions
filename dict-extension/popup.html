@@ -1,27 +1,48 @@
 <!DOCTYPE html>
 <html>
 <header>
-  <title>JV Dict</title>
-  <meta charset="utf-8" />
-  <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
-  <script type="text/javascript" src="bootstrap/bootstrap.bundle.min.js"></script>
+    <title>JV Dict</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="common.css">
+    <!-- <link rel="stylesheet" href="bootstrap/bootstrap.min.css"> -->
+    <!-- <script type="text/javascript" src="bootstrap/bootstrap.bundle.min.js"></script> -->
+    <script type="text/javascript" src="layui/layui.js"></script>
 
 </header>
 
-<body style="width: 300px;">
-  <div class="input-group p-3">
-    <input id="searchIpt" type="text" autofocus=“autofocus” class="form-control" placeholder="Word to search">
-    <button class="btn btn-outline-secondary" type="button" id="searchBtn">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search-heart"
-        viewBox="0 0 16 16">
-        <path d="M6.5 4.482c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.69 0-5.018Z" />
-        <path
-          d="M13 6.5a6.471 6.471 0 0 1-1.258 3.844c.04.03.078.062.115.098l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1.007 1.007 0 0 1-.1-.115h.002A6.5 6.5 0 1 1 13 6.5ZM6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11Z" />
-      </svg>
-    </button>
-  </div>
-  <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
-  <script type="text/javascript" src="js/main.js"></script>
+<body style="width: 300px;" class="ps-2 pe-2">
+
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <ul class="layui-tab-title">
+        <li id="searchTab" class="layui-this">Search</li>
+        <li id="historyTab">History</li>
+        <li id="favoriteTab">Favorite</li>
+    </ul>
+    <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">
+            <div class="p-3 row">
+                <input id="searchIpt" type="text" autofocus="autofocus" class="layui-input col"
+                       placeholder="Word to search">
+                <button class="layui-btn layui-btn-normal col-3 ms-1" type="button" id="searchBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-search-heart"
+                         viewBox="0 0 16 16">
+                        <path d="M6.5 4.482c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.69 0-5.018Z"/>
+                        <path
+                                d="M13 6.5a6.471 6.471 0 0 1-1.258 3.844c.04.03.078.062.115.098l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1.007 1.007 0 0 1-.1-.115h.002A6.5 6.5 0 1 1 13 6.5ZM6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11Z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="layui-tab-item" id="historyCont"></div>
+        <div class="layui-tab-item" id="favCont"></div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
 </body>
 
 </html>

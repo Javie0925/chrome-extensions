@@ -12,6 +12,7 @@ function backjs() {
         }
     })
 }
+
 // bing
 chrome.contextMenus.create({
     type: 'normal',
@@ -37,23 +38,5 @@ const global = (function () {
 
 chrome.contextMenus.onClicked.addListener((item, tab) => {
     let text = item.selectionText.trim()
-    let url = null
-    if (text.split(" ").length > 1 || isChinese(text)) {
-        url = `https://fanyi.baidu.com/#zh/en/${text}`
-        // url = `https://cn.bing.com/search?q=翻译：${text}`;
-    } else {
-        url = `https://cn.bing.com/dict/search?q=${text}`;
-    }
-    //chrome.tabs.create({ url: url.href, index: (tab && tab.index) ? tab.index+100 : 0 });
-    window.open(url);
+    doSearch(text)
 });
-
-function isChinese(text) {
-    var patrn = /[\u4e00-\u9FA5]|[\uFE30-\uFFA0]/gi;
-    if (!patrn.exec(text)) {
-        return false;
-    } else {
-        return true;
-    }
-
-}
