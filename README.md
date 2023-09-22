@@ -4,7 +4,18 @@
 # Introduction
 An extension that helps you search words or sentences in a very convenient way.
 
-# Usage
+# How to install this extension?
+
+![load](load.png)
+![load2](load2.png)
+
+
+>**1. git clone the repository or download the zip file and unzip it.**
+> 
+>**2. follow the steps in the above picture, and select the path of the unzip file which is "{base path}\chrome-extensions\dict-extension".**
+
+
+# Usage of JV DICT extension
 
 ## menu
 ![menu](menu.png)
