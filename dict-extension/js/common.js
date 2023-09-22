@@ -13,10 +13,10 @@ function isChinese(text) {
 
 function doSearch(text) {
     if (!text) return
+    text = text.trim()
     let url
     if (text.split(" ").length > 1 || isChinese(text)) {
         url = `https://fanyi.baidu.com/#zh/en/${text}`
-        // url = `https://cn.bing.com/search?q=翻译：${text}`;
     } else {
         url = `https://cn.bing.com/dict/search?q=${text}`;
     }
@@ -26,7 +26,11 @@ function doSearch(text) {
 }
 
 function store(text) {
-    if (text instanceof String) text = text.trim()
+    if (text instanceof String) {
+        text = text.trim()
+    } else {
+        text = '' + text
+    }
     chrome.storage.local.get("SEARCH_HISTORY", function (kv) {
         let arr = kv[SEARCH_HISTORY]
         if (!arr || !(arr instanceof Array)) arr = []
@@ -62,7 +66,7 @@ function getHistory() {
                         `
                         <div class="list-group-item list-group-item-action row justify-content-between" style="display: flex !important;--bs-gutter-x:0">
                             <a href="#" class="col" aria-current="true">${w}</a>
-                            <i class="layui-icon ${icon} col-1 icon-in-history" style="color: #ffda1e;" data-word=${w}></i>   
+                            <i class="layui-icon ${icon} col-1 icon-in-history" style="color: #ffda1e;" data-word="${w}"></i>   
                         </div>
                         `
                 })
@@ -97,8 +101,11 @@ function clearHistory() {
 }
 
 function setFavorite(text) {
-    if (text instanceof String)
+    if (text instanceof String) {
         text = text.trim()
+    } else {
+        text = '' + text
+    }
     chrome.storage.local.get(FAVORITE, function (kv) {
         debugger
         let arr = kv[FAVORITE]
@@ -106,12 +113,12 @@ function setFavorite(text) {
         if (arr.indexOf(text) >= 0) {
             arr = arr.filter(w => w !== text)
             chrome.storage.local.set({"FAVORITE": arr}, function () {
-                console.log('remove favorite success')
+                console.log(`remove favorite:[${text}] success`)
             })
         } else {
             arr = [text, ...arr]
             chrome.storage.local.set({"FAVORITE": arr}, function () {
-                console.log('set favorite success')
+                console.log(`set favorite:[${text}] success`)
             })
         }
         getHistory()
@@ -138,7 +145,7 @@ function getFavorite() {
                     `
                         <div class="list-group-item list-group-item-action row justify-content-between" style="display: flex !important;--bs-gutter-x:0">
                             <a href="#" class="col">${w}</a>
-                            <i class="layui-icon layui-icon-rate-solid col-1 icon-in-fav" style="color: #ffda1e;" data-word=${w}></i>   
+                            <i class="layui-icon layui-icon-rate-solid col-1 icon-in-fav" style="color: #ffda1e;" data-word="${w}"></i>   
                         </div>
                 
                 `

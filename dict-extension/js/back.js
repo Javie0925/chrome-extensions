@@ -13,10 +13,10 @@ function backjs() {
     })
 }
 
-// bing
+// create menu
 chrome.contextMenus.create({
     type: 'normal',
-    title: 'JV Bing Dict',
+    title: 'JV DICT: Search "%s"',
     id: 'bing',
     // all, audio, browser_action, editable, frame, image, launcher, link, page, page_action, selection, video.
     contexts: ['selection'],
@@ -30,10 +30,6 @@ chrome.contextMenus.create({
 //         contexts: ['all'],
 //     });
 // });
-const global = (function () {
-    if (!this) throw "Don't add 'use strict' globally, use it inside IIFE/functions";
-    return this;
-})();
 
 
 chrome.contextMenus.onClicked.addListener((item, tab) => {
