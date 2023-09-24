@@ -39,9 +39,24 @@ function search() {
     doSearch(word)
 }
 
-window.onload = function () {
-    if (!$("#searchIpt").val()) {
-        document.execCommand("paste")
+$("div#pastingSwitch").on('click', event => {
+    if ($("div#pastingSwitch>div").hasClass("layui-form-onswitch")) {
+        chrome.storage.local.set({"AUTOMATIC_CLIPBOARD_PASTING": true});
+        document.execCommand("paste");
+    } else {
+        chrome.storage.local.set({"AUTOMATIC_CLIPBOARD_PASTING": false})
     }
+})
+
+window.onload = function () {
+    chrome.storage.local.get("AUTOMATIC_CLIPBOARD_PASTING", function (kv) {
+        let on = kv["AUTOMATIC_CLIPBOARD_PASTING"]
+        if (on) {
+            document.execCommand("paste")
+        } else {
+            $("div#pastingSwitch > div").removeClass("layui-form-onswitch");
+            $("div#pastingSwitch > div div").text("OFF")
+        }
+    })
 };
 
