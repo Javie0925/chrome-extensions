@@ -38,3 +38,10 @@ function search() {
     let word = document.querySelector("#searchIpt").value
     doSearch(word)
 }
+
+window.onload = function () {
+    if (!$("#searchIpt").val()) {
+        document.execCommand("paste")
+    }
+};
+
