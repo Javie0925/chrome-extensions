@@ -62,42 +62,43 @@ chrome.runtime.onInstalled.addListener(() => {
         "id": "google-trans",
         "contexts": ["action"],
     });
-    chrome.contextMenus.onClicked.addListener((item, tab) => {
-        switch (item.menuItemId) {
-            case "selection":
-                let text = item.selectionText.trim()
-                chrome.storage.local.get(["AUTOMATIC_CLIPBOARD_PASTING", "ACTIVATED_DICT", "ACTIVATED_TRANS"], (kv) => {
-                    chrome.runtime.sendMessage({
-                        target: 'offscreen',
-                        text,
-                        urlMap: kv,
-                        chrome: chrome
-                    });
-                    store(text)
-                })
-                break;
-            case "automatic-clipboard-pasting-on":
-                chrome.storage.local.set({"AUTOMATIC_CLIPBOARD_PASTING": true})
-                break;
-            case "automatic-clipboard-pasting-off":
-                chrome.storage.local.set({"AUTOMATIC_CLIPBOARD_PASTING": false})
-                break;
-            case "youdao-dict":
-                chrome.storage.local.set({"ACTIVATED_DICT": "https://dict.youdao.com/result?lang=en&word="})
-                break;
-            case "bing-dict":
-                chrome.storage.local.set({"ACTIVATED_DICT": "https://cn.bing.com/dict/search?q="})
-                break;
-            case "baidu-trans":
-                chrome.storage.local.set({"ACTIVATED_TRANS": "https://fanyi.baidu.com/#zh/en/"})
-                break;
-            case "google-trans":
-                chrome.storage.local.set({"ACTIVATED_TRANS": "https://translate.google.com/?sl=auto&tl=zh-CN&op=translate&text="})
-                break;
-            default:
-        }
-    });
 })
+// listener
+chrome.contextMenus.onClicked.addListener((item, tab) => {
+    switch (item.menuItemId) {
+        case "selection":
+            let text = item.selectionText.trim()
+            chrome.storage.local.get(["AUTOMATIC_CLIPBOARD_PASTING", "ACTIVATED_DICT", "ACTIVATED_TRANS"], (kv) => {
+                chrome.runtime.sendMessage({
+                    target: 'offscreen',
+                    text,
+                    urlMap: kv,
+                    chrome: chrome
+                });
+                store(text)
+            })
+            break;
+        case "automatic-clipboard-pasting-on":
+            chrome.storage.local.set({"AUTOMATIC_CLIPBOARD_PASTING": true})
+            break;
+        case "automatic-clipboard-pasting-off":
+            chrome.storage.local.set({"AUTOMATIC_CLIPBOARD_PASTING": false})
+            break;
+        case "youdao-dict":
+            chrome.storage.local.set({"ACTIVATED_DICT": "https://dict.youdao.com/result?lang=en&word="})
+            break;
+        case "bing-dict":
+            chrome.storage.local.set({"ACTIVATED_DICT": "https://cn.bing.com/dict/search?q="})
+            break;
+        case "baidu-trans":
+            chrome.storage.local.set({"ACTIVATED_TRANS": "https://fanyi.baidu.com/#zh/en/"})
+            break;
+        case "google-trans":
+            chrome.storage.local.set({"ACTIVATED_TRANS": "https://translate.google.com/?sl=auto&tl=zh-CN&op=translate&text="})
+            break;
+        default:
+    }
+});
 
 function store(text) {
     if (text instanceof String) {
