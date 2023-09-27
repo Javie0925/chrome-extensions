@@ -53,6 +53,7 @@ window.onload = function () {
         let on = kv["AUTOMATIC_CLIPBOARD_PASTING"]
         if (on) {
             document.execCommand("paste")
+            search()
         } else {
             $("div#pastingSwitch > div").removeClass("layui-form-onswitch");
             $("div#pastingSwitch > div div").text("OFF")

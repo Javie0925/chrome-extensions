@@ -16,11 +16,22 @@ function doSearch(text) {
     text = text.trim()
     let url
     if (text.split(" ").length > 1 || isChinese(text)) {
-        url = `https://fanyi.baidu.com/#zh/en/${text}`
+        chrome.storage.local.get("ACTIVATED_TRANS", function (kv) {
+            url = kv["ACTIVATED_TRANS"] || `https://fanyi.baidu.com/#zh/en/`;
+            url = url.concat(text)
+            recordAndOpen(text, url);
+        })
     } else {
-        url = `https://cn.bing.com/dict/search?q=${text}`;
+        chrome.storage.local.get("ACTIVATED_DICT", function (kv) {
+            url = kv["ACTIVATED_DICT"] || `https://cn.bing.com/dict/search?q=`;
+            url = url.concat(text)
+            recordAndOpen(text, url);
+        })
     }
     //chrome.tabs.create({ url: url.href, index: (tab && tab.index) ? tab.index+100 : 0 });
+}
+
+async function recordAndOpen(text, url) {
     store(text);
     window.open(url);
 }

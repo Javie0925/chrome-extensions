@@ -1,34 +1,35 @@
 {
-    "name": "JV Dict",
-    "version": "1.0",
-    "description": "Dict for myself!",
-    "author": "Javie Wang",
-    "permissions": [
-        "contextMenus",
-        "storage",
-        "tabs",
-        "clipboardWrite",
-        "clipboardRead",
-        "activeTab",
-        "unlimitedStorage"
-    ],
-    "background": {
-        "page":"back.html"
-    },
-    "icons": {
-        "16": "images/icon.png",
-        "48": "images/icon.png",
-        "128": "images/icon.png"
-    },
-    "browser_action": {
-        "default_popup": "popup.html",
-        "default_title": "JV DICT",
-        "default_icon": {
-            "16": "images/icon.png",
-            "32": "images/icon.png",
-            "48": "images/icon.png",
-            "128": "images/icon.png"
-        }
-    },
-    "manifest_version": 2
+  "name": "JV Dict",
+  "version": "1.0",
+  "description": "Dict for myself!",
+  "author": "Javie Wang",
+  "permissions": [
+    "contextMenus",
+    "storage",
+    "tabs",
+    "clipboardWrite",
+    "clipboardRead",
+    "activeTab",
+    "unlimitedStorage"
+  ],
+  "background": {
+    "page": "back.html"
+  },
+  "options_page": "options.html",
+  "icons": {
+    "16": "images/icon.png",
+    "48": "images/icon.png",
+    "128": "images/icon.png"
+  },
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "JV DICT",
+    "default_icon": {
+      "16": "images/icon.png",
+      "32": "images/icon.png",
+      "48": "images/icon.png",
+      "128": "images/icon.png"
+    }
+  },
+  "manifest_version": 2
 }
