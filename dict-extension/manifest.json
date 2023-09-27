@@ -10,10 +10,15 @@
     "clipboardWrite",
     "clipboardRead",
     "activeTab",
-    "unlimitedStorage"
+    "unlimitedStorage",
+    "offscreen",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
   ],
   "background": {
-    "page": "back.html"
+    "service_worker": "js/back.js"
   },
   "options_page": "options.html",
   "icons": {
@@ -21,7 +26,7 @@
     "48": "images/icon.png",
     "128": "images/icon.png"
   },
-  "browser_action": {
+  "action": {
     "default_popup": "popup.html",
     "default_title": "JV DICT",
     "default_icon": {
@@ -31,5 +36,5 @@
       "128": "images/icon.png"
     }
   },
-  "manifest_version": 2
+  "manifest_version": 3
 }
