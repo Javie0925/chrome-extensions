@@ -79,13 +79,15 @@ function getHistory() {
                 )
             } else {
                 arr.map(w => {
+                    w = w.replaceAll('\n', "");
+                    w = w.replaceAll('"', "'");
                     let icon = 'layui-icon-rate-solid'
                     if (favArr.indexOf(w) < 0) icon = 'layui-icon-rate'
                     innerHtml +=
                         `
                         <div class="list-group-item list-group-item-action row justify-content-between" style="display: flex !important;--bs-gutter-x:0">
-                            <a href="#" class="col" aria-current="true">${w}</a>
-                            <i class="layui-icon ${icon} col-1 icon-in-history" style="color: #ffda1e;" data-word="${w}"></i>   
+                            <a href="#" class="col" aria-current="true" style="overflow: hidden">${w}</a>
+                            <i class="layui-icon ${icon} col-1 icon-in-history" style="overflow:hidden;color: #ffda1e;" data-word="${w}"></i>   
                         </div>
                         `
                 })
@@ -160,11 +162,13 @@ function getFavorite() {
             )
         } else {
             arr.map(w => {
+                w = w.replaceAll('\n', "");
+                w = w.replaceAll('"', "'");
                 innerHtml +=
                     `
-                        <div class="list-group-item list-group-item-action row justify-content-between" style="display: flex !important;--bs-gutter-x:0">
+                        <div class="list-group-item list-group-item-action row justify-content-between" style="overflow:hidden;display: flex !important;--bs-gutter-x:0">
                             <a href="#" class="col">${w}</a>
-                            <i class="layui-icon layui-icon-rate-solid col-1 icon-in-fav" style="color: #ffda1e;" data-word="${w}"></i>   
+                            <i class="layui-icon layui-icon-rate-solid col-1 icon-in-fav" style="overflow:hidden;color: #ffda1e;" data-word="${w}"></i>   
                         </div>
                 
                 `
