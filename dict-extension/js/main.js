@@ -42,6 +42,7 @@ function search() {
 $("div#pastingSwitch").on('click', event => {
     if ($("div#pastingSwitch>div").hasClass("layui-form-onswitch")) {
         chrome.storage.local.set({"AUTOMATIC_CLIPBOARD_PASTING": true});
+        $("#searchIpt").val('')
         document.execCommand("paste");
     } else {
         chrome.storage.local.set({"AUTOMATIC_CLIPBOARD_PASTING": false})
