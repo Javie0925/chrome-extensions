@@ -63,7 +63,7 @@ chrome.contextMenus.onClicked.addListener((item, tab) => {
             chrome.storage.local.get([KEY], (kv) => {
                 debugger
                 if (kv[KEY] === null || kv[KEY] === undefined || !kv[KEY] instanceof Array) kv[KEY] = []
-                if (kv[KEY].filter(item => item === host).length === 0) {
+                if (kv[KEY].filter(item => item === targetHost).length === 0) {
                     let newList = [targetHost, ...kv[KEY]];
                     updateActiveHostArray(newList)
                 }
