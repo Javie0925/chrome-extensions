@@ -1,0 +1,40 @@
+{
+  "name": "Stay on this page",
+  "version": "1.0",
+  "description": "Stay on this page",
+  "author": "Javie Wang",
+  "permissions": [
+    "contextMenus",
+    "storage",
+    "tabs",
+    "clipboardWrite",
+    "clipboardRead",
+    "activeTab",
+    "scripting",
+    "unlimitedStorage",
+    "offscreen",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "js/back.js"
+  },
+  "icons": {
+    "16": "images/icon.png",
+    "48": "images/icon.png",
+    "128": "images/icon.png"
+  },
+  "action": {
+    "default_title": "Stay on this page",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/icon.png",
+      "32": "images/icon.png",
+      "48": "images/icon.png",
+      "128": "images/icon.png"
+    }
+  },
+  "manifest_version": 3
+}
