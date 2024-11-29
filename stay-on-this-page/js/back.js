@@ -19,7 +19,15 @@ function removeTarget(tab) {
             chrome.scripting.executeScript({
                 target: {tabId: tab.id},
                 func: function () {
-                    document.querySelectorAll("a").forEach(a => a.target = "")
+                    //document.querySelectorAll("a").forEach(a => a.target = "_self")
+                    $("a").click(eventData, (eventObject)=>{
+                        chrome.runtime.sendMessage({
+                            target: 'offscreen',
+                            foreword: event.currentTarget.href
+                            urlMap: kv,
+                            chrome: chrome
+                        });
+                    })
                 }
             });
         }
@@ -52,6 +60,22 @@ chrome.runtime.onInstalled.addListener(() => {
         "id": "inactive",
         "contexts": ["action"]
     });
+    // create menu
+    chrome.contextMenus.create({
+        type: 'normal',
+        title: 'Active in this page',
+        id: 'active_inPage',
+        // all, audio, action, editable, frame, image, launcher, link, page, page_action, selection, video.
+        contexts: ['all'],
+    });
+    // create menu
+    chrome.contextMenus.create({
+        type: 'normal',
+        title: 'Inactive in this page',
+        id: 'inactive_inPage',
+        // all, audio, action, editable, frame, image, launcher, link, page, page_action, selection, video.
+        contexts: ['all'],
+    });
 })
 
 // listener
@@ -59,7 +83,7 @@ chrome.contextMenus.onClicked.addListener((item, tab) => {
     if (!tab.url.startsWith("http")) return
     let targetHost = getTargetHost(tab.url)
     switch (item.menuItemId) {
-        case "active":
+        case "active","active_inPage":
             chrome.storage.local.get([KEY], (kv) => {
                 debugger
                 if (kv[KEY] === null || kv[KEY] === undefined || !kv[KEY] instanceof Array) kv[KEY] = []
@@ -69,7 +93,7 @@ chrome.contextMenus.onClicked.addListener((item, tab) => {
                 }
             })
             break;
-        case "inactive":
+        case "inactive","inactive_inPage":
             removeHost(targetHost)
             break;
         default:
